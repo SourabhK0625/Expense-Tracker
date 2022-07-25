@@ -1,4 +1,6 @@
 import React, {useRef , useEffect , useState , useContext} from "react";
+import github from '../../Assets/github.jpeg';
+import url from '../../Assets/url.jpeg'
 import CartContext from "../Cart/CartContext";
 import { Link } from "react-router-dom";
 import './Profile.css'
@@ -74,22 +76,37 @@ const Profile = props =>
     }
     
     return (
-        <div>
-            <button onClick={crtCtx.removeToken}>Logout</button>
-            <div>
-                <span  className="main-profile">Winner Never Quits, Quitter Never Wins</span>
-                <span className="profile-div">Your Profile is 35% Completed.A complete Profile has </span><br></br>
-                <span className="profile-div">higher chance of landing JOBS.<Link to='/profile' className="complete-profile">Complete Now</Link></span>
+        <div className="main">
+            <div className="title">
+                <span className="title-span1">Winner Never Quits, Quitter Never Wins</span>
+                <span className="title-span2">Your Profile is 35% Completed.A complete Profile has <br></br>
+                      higher chance of landing JOBS.<Link className="complete-button" to='/profile'>Complete Now</Link>
+                </span>
             </div>
-            <div>
+            
+            <div className="form-main">
+            <h2>Contact Details</h2>
                 <form onSubmit={submitHandler}>
-                    <label htmlFor='name'>Full Name :</label>
-                    <input type='text' id='name' required ref={nameRef} defaultValue={name} />
-                    <label htmlFor='imageUrl'>Profile Photo Url :</label>
-                    <input type='text' id='imageUrl' required ref={imageUrlRef} defaultValue={imageLink} />
-                    <button type="submit">Update</button>
+                    <span className="form-div">
+                        
+                        <label className="form-lable" htmlFor='name'><img alt="" className="imageName" src={github}></img>Full Name :</label>
+                        <input className="form-input" type='text' id='name' required ref={nameRef} defaultValue={name} />
+                    </span>
+
+                    <span className="form-div">
+                        <img alt="" className="imageName" src={url}></img>
+                        <label className="form-lable" htmlFor='imageUrl'>Profile Photo Url :</label>
+                        <input className="form-input" type='text' id='imageUrl' required ref={imageUrlRef} defaultValue={imageLink} /><br></br> 
+                    </span>
+
+                    <div className="button-div">
+                        <span><button className="button-update" type="submit">Update</button></span>
+                        <span><button className="button-logout" onClick={crtCtx.removeToken}>Logout</button></span>
+                    </div>
+
                 </form>
-                {verifyEmail &&<button onClick={verifyHandler}>Verify E-mail</button>}
+                {verifyEmail &&<button className="button-verify" onClick={verifyHandler}>Verify E-mail</button>}
+                
             </div>
         </div>
     )

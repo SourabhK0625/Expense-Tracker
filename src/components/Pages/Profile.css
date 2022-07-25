@@ -1,14 +1,98 @@
-.main-profile{
-    float: left;
+.main{
+  margin: 0.5rem;
+  border-radius: 2rem;
+  background-color: rgb(184, 196, 206);
 }
-.profile-div{
-    float: right;
-    /* padding-left: 500px; */
+.title{
+  color: black;
 }
-.complete-profile{
-    font-style: italic;
-    background-color: rgb(195, 182, 166);
-    border-radius: 10px;
-    /* padding-right: .5rem;
-    padding-left: .5rem; */
+.title-span1{
+  float: left;
+  background-color:beige;
+  border-radius: 20px;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-left: 3.7rem;
+  margin-top: 1.3rem;
+}
+.title-span2{
+  float: right;
+  background-color: rgb(205, 225, 225);
+  border-radius: 20px;
+  padding-top: .5rem;
+  margin-top: 0px;
+  padding-bottom: .5rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-bottom: .25rem;
+  margin-right: 3.7rem;
+}
+.complete-button{
+  padding-right: 1%;
+  padding-left: 1%;
+  background-color: bisque;
+  border-radius: 15px;
+  font-style: italic;
+}
+.form-main{
+  background-color:azure;
+  padding-top: 2rem;
+  margin-top: 4rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
+  padding-left: 4rem;
+  padding-bottom: 2rem;
+  border-radius: 2rem;
+}
+.form-div{
+  margin: .5rem;
+}
+.form-lable{
+  font-size: larger;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: oblique;
+  text-shadow: .5rem;
+  font-size: larger;
+}
+.form-input{
+  padding-left: 1rem;
+  border-radius: .5rem;
+  font-style: normal;
+  background-color: rgb(214, 194, 168);
+  font-size: larger;
+}
+.button-div{
+  margin-top: 2rem;
+}
+.button-update{
+  font-size: medium;
+  background-color: rgb(198, 222, 176);
+  border-radius: .5rem;
+  color: rgb(9, 10, 10);
+  padding: .25rem;
+  margin: .25rem;
+}
+.button-logout{
+  font-size: medium;
+  padding: .25rem;
+  margin: .25rem;
+  border-radius: .5rem;
+  background-color: lightsteelblue;
+  color: brown;
+}
+.button-verify{
+  font-size: medium;
+  padding: .25rem;
+  margin: .25rem;
+  border-radius: .5rem;
+  background-color: lightsteelblue;
+  color:rgb(3, 3, 3);
+}
+.imageName{
+    width: 20px;
+    height: 20px;
+    margin-top: .5rem;
+    position: relative;
 }

@@ -6,8 +6,8 @@ const Welcome = props =>
 {
     return (
         <div className="main">
-            <div>Welcome To Expense Tracker...!</div>
-            <div className="profile">Complete Your Profile..! <Link to='/profile' className="complete">Complete Now?</Link></div>
+            <span>Welcome To Expense Tracker...!</span>
+            <span className="profile">Complete Your Profile..! <Link to='/profile' className="complete">Complete Now?</Link></span>
         </div>
     )
 };
