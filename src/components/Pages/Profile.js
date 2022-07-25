@@ -5,8 +5,10 @@ const Profile = props =>
 {
     const [name , setIsName] = useState([]);
     const [imageLink , setImageLink] = useState([]);
+    const [verifyEmail , setVerifiedEmail] = useState(true);
     const nameRef = useRef();
     const imageUrlRef = useRef();
+
 
     async function getBackData()
     {
@@ -22,6 +24,7 @@ const Profile = props =>
         console.log(data)
         setIsName(data.displayName);
         setImageLink(data.photoUrl);
+        data.emailVerified && setVerifiedEmail(false);
     } 
     useEffect(()=>{getBackData()},[]);
 
@@ -59,12 +62,14 @@ const Profile = props =>
             if(res.ok)
             {
                 console.log(res);
+                
             }
         }).catch(err=>
             {
                 console.log('Email Not Verified');
             })
     }
+    
     return (
         <div>
             <div>
@@ -80,7 +85,7 @@ const Profile = props =>
                     <input type='text' id='imageUrl' required ref={imageUrlRef} defaultValue={imageLink} />
                     <button type="submit">Update</button>
                 </form>
-                <button onClick={verifyHandler}>Verify E-mail</button>
+                {verifyEmail &&<button onClick={verifyHandler}>Verify E-mail</button>}
             </div>
         </div>
     )
