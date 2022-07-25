@@ -1,12 +1,15 @@
-import { useState, useRef } from 'react';
-
+import { useState, useRef, useContext  } from 'react';
+import { useHistory } from 'react-router-dom';
+import CartContext from '../Cart/CartContext';
 import classes from './Login.module.css';
 
 const AuthForm = () => {
+  const history = useHistory();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-
+  const crtctx = useContext(CartContext);
   const [isLogin, setIsLogin] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -18,36 +21,53 @@ const AuthForm = () => {
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
-    // optional: Add validation
+  
 
-    if (isLogin) {
-    } else {
-      fetch(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBMoCmrXulQToPQEvD8GVvnW5klI3An3Ps',
+    setIsLoading(true);
+    let url;
+    if (isLogin) 
+    {
+        url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBMoCmrXulQToPQEvD8GVvnW5klI3An3Ps';
+    } 
+    else 
+    {
+        url='https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBMoCmrXulQToPQEvD8GVvnW5klI3An3Ps';
+    }
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        email: enteredEmail,
+        password: enteredPassword,
+        returnSecureToken: true,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => 
+      {
+        setIsLoading(false);
+        if (res.ok) 
         {
-          method: 'POST',
-          body: JSON.stringify({
-            email: enteredEmail,
-            password: enteredPassword,
-            returnSecureToken: true,
-          }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      ).then((res) => {
-        if (res.ok) {
-          // ...
-        } else {
+          return res.json();
+        } 
+        else 
+        {
           return res.json().then((data) => {
-            // show an error modal
-            console.log(data);
+            let errorMessage = 'Authentication failed!';
+            throw new Error(errorMessage);
           });
         }
+      })
+      .then((data) => {
+        crtctx.addToken({token: data.idToken});
+        history.replace('/welcome');
+      })
+      .catch((err) => {
+        alert(err.message);
       });
-    }
   };
-
+  console.log(crtctx.tokens)
   return (
     <section className={classes.auth}>
       <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
@@ -66,7 +86,10 @@ const AuthForm = () => {
           />
         </div>
         <div className={classes.actions}>
-          <button>{isLogin ? 'Login' : 'Create Account'}</button>
+          {!isLoading && (
+            <button>{isLogin ? 'Login' : 'Create Account'}</button>
+          )}
+          {isLoading && <p>Sending request...</p>}
           <button
             type='button'
             className={classes.toggle}
