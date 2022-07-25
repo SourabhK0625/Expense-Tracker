@@ -1,7 +1,9 @@
 import { useState } from "react";
 import CartContext from "./CartContext";
+import { useHistory } from "react-router-dom";
 const CartProvider = props =>
 {
+    const history = useHistory();
     const initialToken = localStorage.getItem('token');
     let [isToken, setIsToken] = useState(initialToken);
 
@@ -14,8 +16,9 @@ const CartProvider = props =>
 
     const removeTokenHandler = ()=>
     {
-       setIsToken(null);
-       localStorage.removeItem('token');
+        setIsToken(null);
+        localStorage.removeItem('token');
+        history.replace('/login');
     };
     const cartContext = 
     {

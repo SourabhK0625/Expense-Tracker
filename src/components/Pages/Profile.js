@@ -1,8 +1,11 @@
-import React, {useRef , useEffect , useState} from "react";
+import React, {useRef , useEffect , useState , useContext} from "react";
+import CartContext from "../Cart/CartContext";
 import { Link } from "react-router-dom";
 import './Profile.css'
 const Profile = props =>
 {
+    const crtCtx = useContext(CartContext);
+    
     const [name , setIsName] = useState([]);
     const [imageLink , setImageLink] = useState([]);
     const [verifyEmail , setVerifiedEmail] = useState(true);
@@ -72,6 +75,7 @@ const Profile = props =>
     
     return (
         <div>
+            <button onClick={crtCtx.removeToken}>Logout</button>
             <div>
                 <span  className="main-profile">Winner Never Quits, Quitter Never Wins</span>
                 <span className="profile-div">Your Profile is 35% Completed.A complete Profile has </span><br></br>

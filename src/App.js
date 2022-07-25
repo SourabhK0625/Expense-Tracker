@@ -11,10 +11,10 @@ function App()
   return (
     <CartProvider>
       <Switch>
-       {!crtctx.isLoggedIn &&<Route path='/login'><Login /></Route>}
-       {!crtctx.isLoggedIn &&<Route path='/' exact><Redirect to='/login' /></Route>}
-        <Route path='/welcome'><Welcome /></Route>
-        <Route path='/profile'><Profile /></Route>
+       <Route path='/login'><Login /></Route>
+        {!crtctx.isLoggedIn &&<Route path='/' exact><Redirect to='/login'/></Route>}
+        {crtctx.isLoggedIn &&<Route path='/welcome'><Welcome /></Route>}
+        {crtctx.isLoggedIn &&<Route path='/profile'><Profile /></Route>}
       </Switch>
     </CartProvider>
   );
