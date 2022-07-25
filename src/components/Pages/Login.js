@@ -61,6 +61,7 @@ const AuthForm = () => {
       })
       .then((data) => {
         crtctx.addToken({token: data.idToken});
+        localStorage.setItem('token' , data.idToken)
         history.replace('/welcome');
       })
       .catch((err) => {

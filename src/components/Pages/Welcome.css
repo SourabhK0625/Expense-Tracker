@@ -1,0 +1,14 @@
+.main{
+    margin: 1rem;
+    display: inline-flex;
+}
+.profile{
+    float: right;
+    padding-left: 700px;
+}
+.complete{
+    font-style: italic;
+    background-color: rgb(195, 182, 166);
+    padding: .5rem 1rem;
+    border-radius: 10px;
+}

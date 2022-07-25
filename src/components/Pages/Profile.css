@@ -1,0 +1,14 @@
+.main-profile{
+    float: left;
+}
+.profile-div{
+    float: right;
+    /* padding-left: 500px; */
+}
+.complete-profile{
+    font-style: italic;
+    background-color: rgb(195, 182, 166);
+    border-radius: 10px;
+    /* padding-right: .5rem;
+    padding-left: .5rem; */
+}
