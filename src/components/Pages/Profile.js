@@ -44,6 +44,26 @@ const Profile = props =>
             console.log(res.json())
         })
         
+    };
+
+    const verifyHandler = mail =>{
+        mail.preventDefault();
+        fetch('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBMoCmrXulQToPQEvD8GVvnW5klI3An3Ps',
+        {
+            method: 'POST',
+            body: JSON.stringify({
+                requestType: 'VERIFY_EMAIL',
+                idToken: localStorage.getItem('token')
+            })
+        }).then(res => {
+            if(res.ok)
+            {
+                console.log(res);
+            }
+        }).catch(err=>
+            {
+                console.log('Email Not Verified');
+            })
     }
     return (
         <div>
@@ -60,7 +80,7 @@ const Profile = props =>
                     <input type='text' id='imageUrl' required ref={imageUrlRef} defaultValue={imageLink} />
                     <button type="submit">Update</button>
                 </form>
-                
+                <button onClick={verifyHandler}>Verify E-mail</button>
             </div>
         </div>
     )
