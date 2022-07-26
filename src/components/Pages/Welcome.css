@@ -1,6 +1,6 @@
 .main{
     background-color: rgb(172, 201, 201);
-    padding: 1rem;
+    padding: .5rem;
 }
 .profile{
     float: right;
@@ -10,5 +10,60 @@
     font-style: italic;
     background-color: rgb(195, 182, 166);
     padding: .5rem 1rem;
-    border-radius: 10px;
+    border-radius: 1rem;
+}
+.image-expenses{
+    float: right;
+    width:300px;
+    height:300px;
+    border-radius: 2rem;
+    border-color: black;
+}
+.form{
+    text-align: left;
+    padding: 2rem;
+    background-color: antiquewhite;
+    border-radius: 2rem;
+    background-image: url(../../Assets/expenses.jpg);
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+.form-span{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: large;
+    margin: .5rem;
+}
+.form-lable{
+    font-size: large;
+    margin: .5rem;
+}
+.form-input-AE{
+    font-size: medium;
+    border-radius: .5rem;
+    margin: .5rem;
+    width: 30rem;
+}
+.form-input-description{
+    width: 30rem;
+    font-size: medium;
+    border-radius: .5rem;
+    margin: .5rem;
+}
+.form-option{
+    font-size: medium;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.submit-expense{
+    margin: 1.5rem;
+    font-size: large;
+    background-color: rgb(208, 253, 255);
+    border-radius: .2rem;
+    color: darkblue;
+}
+.expenses{
+    background-color: rgb(197, 230, 226);
+    margin: .25rem;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    border-radius: .5rem;
 }
