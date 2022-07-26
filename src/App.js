@@ -5,6 +5,7 @@ import {Redirect, Route , Switch} from 'react-router-dom'
 import CartContext from "./components/Cart/CartContext";
 import Welcome from "./components/Pages/Welcome";
 import Profile from "./components/Pages/Profile";
+import ForgotPassword from "./components/Pages/ForgotPassword";
 function App() 
 {
   const crtctx = useContext(CartContext);
@@ -13,8 +14,9 @@ function App()
       <Switch>
        <Route path='/login'><Login /></Route>
         {!crtctx.isLoggedIn &&<Route path='/' exact><Redirect to='/login'/></Route>}
-        {crtctx.isLoggedIn &&<Route path='/welcome'><Welcome /></Route>}
+        <Route path='/welcome'><Welcome /></Route>
         {crtctx.isLoggedIn &&<Route path='/profile'><Profile /></Route>}
+        <Route path='/forgotPassword'><ForgotPassword /></Route>
       </Switch>
     </CartProvider>
   );
