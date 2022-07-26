@@ -88,7 +88,6 @@ const Profile = props =>
             <h2>Contact Details</h2>
                 <form onSubmit={submitHandler}>
                     <span className="form-div">
-                        
                         <label className="form-lable" htmlFor='name'><img alt="" className="imageName" src={github}></img>Full Name :</label>
                         <input className="form-input" type='text' id='name' required ref={nameRef} defaultValue={name} />
                     </span>
