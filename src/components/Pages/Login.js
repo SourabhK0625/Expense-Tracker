@@ -55,6 +55,7 @@ const AuthForm = () => {
       .then((data) => {
         crtctx.addToken({ token: data.idToken });
         localStorage.setItem("token", data.idToken);
+        localStorage.setItem('email', enteredEmail.replace('@','').replace('.',''));
         history.replace("/welcome");
       })
       .catch((err) => {

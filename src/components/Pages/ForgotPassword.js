@@ -12,6 +12,7 @@ const ForgotPassword = (props) =>
     pswd.preventDefault();
     // const emailInputRef = useRef();
     const enteredEmail = emialInputRef.current.value;
+    setIsLoading(true);
     fetch('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBMoCmrXulQToPQEvD8GVvnW5klI3An3Ps',
     {
         method: 'POST',
@@ -21,6 +22,7 @@ const ForgotPassword = (props) =>
         })
     }).then(res =>
         {
+            setIsLoading(false);
             if(res.ok){
                 alert("Password Reset-Link Has been sent to your mail")
                 console.log(res)
