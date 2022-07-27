@@ -1,7 +1,6 @@
 import React, {useRef, useState , useEffect } from "react";
 import expenses from '../../Assets/expenses.jpg';
 import { Link } from "react-router-dom";
-
 import './Welcome.css'
 
 const Welcome = props =>
@@ -70,7 +69,7 @@ const Welcome = props =>
                 })
             }
         }).then((data) => {
-            console.log(data)
+            // console.log(data)
             alert('Data is sent to Backend successfully!!!')
             setArrayDetails([...arrayDetails, {name:data.name,amount:enteredAmount, description: enteredDescription, category: enteredExpense}])
         }).catch(err =>{
@@ -124,7 +123,7 @@ const Welcome = props =>
     };
 
     const deleteHandler = id =>{
-        console.log(id.name)
+        // console.log(id.name)
         fetch(`https://expense-tracker-3135a-default-rtdb.firebaseio.com/${loggedEmail}/${id.name}.json`, 
         {
             method:"DELETE",
@@ -169,6 +168,7 @@ const Welcome = props =>
                     <button className="submit-expense" type="submit">Submit Expense</button>
                 </span><br></br>
             </form>
+            
             <ul className="app-container">
                     <table>
                         <thead>
