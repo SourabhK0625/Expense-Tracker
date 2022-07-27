@@ -1,6 +1,7 @@
 import React, {useRef, useState , useEffect } from "react";
 import expenses from '../../Assets/expenses.jpg';
 import { Link } from "react-router-dom";
+
 import './Welcome.css'
 
 const Welcome = props =>
@@ -10,6 +11,7 @@ const Welcome = props =>
     const descriptionRef = useRef();
     const expenseRef = useRef();
     const loggedEmail = localStorage.getItem('email');
+    
     // On reload get all the data from the backend 
     useEffect(()=>{
         let initialData =[]
@@ -28,15 +30,16 @@ const Welcome = props =>
                 }
             }).then((data) =>{
                 
-                for(let val of Object.values(data)){
+                for(let [key,val] of Object.entries(data)){
                     initialData.push(val)
-                    setArrayDetails(arrayDetails => [...arrayDetails, {amount: val.Amount, description: val.Description, expenses: val.Category}])
+                    setArrayDetails(arrayDetails => [...arrayDetails, {name:key ,amount: val.Amount, description: val.Description, expenses: val.Category}])
                 }
-                
             })
-            console.log(initialData)
+            // console.log(initialData)
+            // console.log(loggedEmail);
             
-    },[loggedEmail])
+    },[loggedEmail]);
+    
 
     const submitHandler = item =>
     {
@@ -69,12 +72,71 @@ const Welcome = props =>
         }).then((data) => {
             console.log(data)
             alert('Data is sent to Backend successfully!!!')
-            setArrayDetails([...arrayDetails, {amount:enteredAmount, description: enteredDescription, category: enteredExpense}])
+            setArrayDetails([...arrayDetails, {name:data.name,amount:enteredAmount, description: enteredDescription, category: enteredExpense}])
+        }).catch(err =>{
+            alert(err.errorMessage)
+        })
+    };
+
+    const updateHandler = item =>
+    {
+        let NewAmount = prompt('Enter the New Amount: ',item.amount)
+        let NewDescriptioin = prompt(' Enter the New Desription: ', item.description)
+        let NewCategory = prompt(' Enter the New Category: ', item.category)
+        
+        console.log(item)
+        fetch(`https://expense-tracker-3135a-default-rtdb.firebaseio.com/${loggedEmail}/${item.name}.json`, {
+            method:"GET"
+        }).then(res => {
+            if(res.ok){
+                return res.json()
+            }else{
+                return res.json().then((data => {
+                    let errorMessage = 'Get Request Failed';
+                    throw new Error(errorMessage)
+                }))
+            }
+        }).then((data) =>{
+            console.log(data)
+            reqPATCH(item.name, NewAmount, NewCategory, NewDescriptioin)
             
         }).catch(err =>{
             alert(err.errorMessage)
         })
+
+        // Request for PATCH function 
+        function reqPATCH( id, NewAmount, NewCategory, NewDescription){
+           fetch(`https://expense-tracker-3135a-default-rtdb.firebaseio.com/${loggedEmail}/${id}.json`,
+            {
+                method:"PATCH",
+                body:JSON.stringify({
+                    amount: NewAmount,
+                    category: NewCategory,
+                    description: NewDescription,
+                })
+            }).then(res => {
+                return res.json()
+            }).then(data => {
+                console.log(data)
+                window.location.reload(false)
+            })
+        }
+    };
+
+    const deleteHandler = id =>{
+        console.log(id.name)
+        fetch(`https://expense-tracker-3135a-default-rtdb.firebaseio.com/${loggedEmail}/${id.name}.json`, 
+        {
+            method:"DELETE",
+        }).then(res =>{
+            return res.json()
+        }).then(data =>{
+            console.log(data)
+            alert('Are you sure ?')
+            window.location.reload(false)
+        })
     }
+
     return (
         <div>
             <div className="main">
@@ -107,10 +169,31 @@ const Welcome = props =>
                     <button className="submit-expense" type="submit">Submit Expense</button>
                 </span><br></br>
             </form>
-            <ul className="expenses">
-                {arrayDetails.map(item=>{return(
-                    <li key={Math.random.toString()}>Rs{item.amount}  {item.description}  {item.expenses}</li>
-                )})}
+            <ul className="app-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Amount In Rs</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                {arrayDetails.map(item=>{
+                    console.log(item);
+                    return(                    
+                        <tbody key={Math.random().toString()}>
+                            <tr>
+                                <td>{item.amount}</td>
+                                <td>{item.description}</td>
+                                <td>{item.expenses}</td>
+                                <td>
+                                    <button onClick={()=>{deleteHandler({name:item.name})}}>Delete</button>
+                                    <button onClick={()=>{updateHandler({name:item.name ,amount:item.amount , description:item.description , expenses: item.expenses})}}>Update</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                )})}</table>
             </ul>
             {console.log(arrayDetails)}
         </div>

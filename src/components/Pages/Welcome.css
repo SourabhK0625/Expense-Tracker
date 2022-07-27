@@ -66,4 +66,45 @@
     padding-top: .25rem;
     padding-bottom: .25rem;
     border-radius: .5rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+
+
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0rem;
+  }
+  
+  table {
+    border-collapse: collapse;
+    margin: 1rem;
+    border-radius: 1rem;
+  }
+  
+  th,
+  td {
+    border: 1px solid #ffffff;
+    text-align: center;
+    padding: .25rem;
+    font-size: medium;
+    border-radius: 1rem;
+  }
+  
+  th {
+    background-color: rgb(117, 201, 250);
+  }
+  
+  td {
+    background-color: rgb(205, 235, 253);
+  }
+   
+  form td:last-child {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+ 
