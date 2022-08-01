@@ -36,7 +36,7 @@
     border: 1px solid white;
     width: 100%;
     text-align: left;
-    padding: 0.25rem;
+    padding: 0.015rem;
   }
   
   .actions {
@@ -51,7 +51,7 @@
     cursor: pointer;
     font: inherit;
     color: white;
-    background-color: #9f5ccc;
+    background-color: #ae85ca;
     border: 1px solid #9f5ccc;
     border-radius: 4px;
     padding: 0rem 2.5rem;

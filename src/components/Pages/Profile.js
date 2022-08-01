@@ -1,12 +1,14 @@
 import React, {useRef , useEffect , useState , useContext} from "react";
+import { useHistory } from "react-router-dom";
 import github from '../../Assets/github.jpeg';
-import url from '../../Assets/url.jpeg'
+import url from '../../Assets/url.jpeg';
 import CartContext from "../Cart/CartContext";
 import { Link } from "react-router-dom";
 import './Profile.css'
 const Profile = props =>
 {
     const crtCtx = useContext(CartContext);
+    const history = useHistory();
     
     const [name , setIsName] = useState([]);
     const [imageLink , setImageLink] = useState([]);
@@ -50,6 +52,7 @@ const Profile = props =>
         }
         ).then(res=>{
             console.log(res.json())
+            history.replace('/Welcome')
         })
         
     };

@@ -18,7 +18,8 @@ const CartProvider = props =>
     {
         setIsToken(null);
         localStorage.removeItem('token');
-        history.replace('/login');
+        localStorage.removeItem('email');
+        history.replace('/login')
     };
 
     const cartContext = 

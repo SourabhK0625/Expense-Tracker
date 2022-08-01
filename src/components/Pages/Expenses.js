@@ -1,7 +1,7 @@
 import React, {useRef, useState , useEffect , useContext } from "react";
 import expenses from '../../Assets/expenses.jpg';
 import CartContext from "../Cart/CartContext";
-import './Welcome.css'
+import './Welcome.css';
 import { CSVLink } from 'react-csv';
 const Expense = props =>
 {
@@ -220,8 +220,8 @@ const Expense = props =>
                                 <td>{item.description}</td>
                                 <td>{item.expenses}</td>
                                 <td>
-                                    <button onClick={()=>{deleteHandler({name:item.name})}}>Delete</button>
-                                    <button onClick={()=>{updateHandler({name:item.name ,amount:item.amount , description:item.description , expenses: item.expenses})}}>Update</button>
+                                    <button className="delete_button" onClick={()=>{deleteHandler({name:item.name})}}>Delete</button>
+                                    <button className="update_button" onClick={()=>{updateHandler({name:item.name ,amount:item.amount , description:item.description , expenses: item.expenses})}}>Update</button>
                                 </td>
                             </tr>
                         </tbody>
