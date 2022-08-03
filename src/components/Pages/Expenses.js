@@ -16,8 +16,8 @@ const Expense = props =>
     const descriptionRef = useRef();
     const expenseRef = useRef();
     const loggedEmail = localStorage.getItem('email');
-    const totalExpense = arrayDetails.reduce((accumulator,curValue)=>parseInt(curValue.amount) + accumulator,0) 
-    console.log(totalExpense)
+    const totalExpense = arrayDetails.reduce((accumulator,curValue)=>parseInt(curValue.amount) + accumulator,0); 
+    console.log(totalExpense);
 
     const headers = [
         {label: 'Amount' ,key: 'amount'},
@@ -82,7 +82,7 @@ const Expense = props =>
             const enteredAmount = amountRef.current.value;
             const enteredDescription = descriptionRef.current.value;
             const enteredExpense = expenseRef.current.value;
-            if((enteredAmount)+totalExpense <=5000)
+            if((totalExpense+enteredAmount) <5000)
             {
                 setArrayDetails([...arrayDetails ,{amount:enteredAmount , description: enteredDescription, expenses: enteredExpense}]);
                 console.log(arrayDetails)
@@ -113,8 +113,11 @@ const Expense = props =>
                 }).catch(err =>{
                     alert(err.errorMessage)
                 })
-            }else{
+            }
+            else
+            {
                 console.log("Amount exceeded")
+                alert("Amount exceeded Rs 5000 Buy Premium")
                 setShowPremium(true);
             }
             

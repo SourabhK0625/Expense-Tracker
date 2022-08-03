@@ -54,7 +54,7 @@ const Profile = (props) => {
     ).then((res) => {
       console.log(res.json());
       history.replace("/Welcome");
-    });
+    })
   };
 
   const verifyHandler = (mail) => {
