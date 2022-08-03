@@ -6,6 +6,12 @@
 .title{
   color: black;
 }
+.profile_image{
+  width: 200px;
+  height: 180px;
+  border: 10px solid rgb(171, 96, 96);
+  border-radius: 10px;
+}
 .title-span1{
   float: left;
   background-color:beige;

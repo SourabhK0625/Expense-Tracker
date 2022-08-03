@@ -74,7 +74,7 @@
     border-radius: .5rem;
     color: rgb(152, 194, 194);
     padding: .25rem;
-    margin: .25rem;
+    margin: .20rem;
 }
 .update_button{
     font-size: medium;
@@ -82,12 +82,8 @@
     border-radius: .5rem;
     color: rgb(9, 10, 10);
     padding: .25rem;
-    margin: .25rem;
+    margin: .20rem;
 }
-
-
-
-
 .app-container {
     display: flex;
     flex-direction: column;

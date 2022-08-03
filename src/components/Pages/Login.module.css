@@ -1,15 +1,16 @@
 .auth {
     margin: 10rem auto;
-    width: 95%;
+    width: 100%;
     max-width: 35rem;
     height: 20rem;
     border-radius: 6px;
     background-color: #5a2979;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-    padding-bottom: 3rem;
+    padding-bottom: 22rem;
     padding-left: 1rem;
     padding-right: 1rem;
     text-align: center;
+    padding-top: .5rem;
   }
   
   .auth h1 {
@@ -18,14 +19,14 @@
   }
   
   .control {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
   }
   
   .control label {
     display: block;
     color: white;
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
   }
   
   .control input {
@@ -36,7 +37,7 @@
     border: 1px solid white;
     width: 100%;
     text-align: left;
-    padding: 0.015rem;
+    padding: 0.5rem;
   }
   
   .actions {

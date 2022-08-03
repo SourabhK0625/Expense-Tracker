@@ -2,6 +2,7 @@ import React, {useRef, useState , useEffect , useContext } from "react";
 import expenses from '../../Assets/expenses.jpg';
 import CartContext from "../Cart/CartContext";
 import './Welcome.css';
+import './Expenses.css';
 import { CSVLink } from 'react-csv';
 const Expense = props =>
 {
@@ -10,6 +11,7 @@ const Expense = props =>
     const crtctx = useContext(CartContext)
     const [arrayDetails , setArrayDetails] = useState([]);
     const [showPremium , setShowPremium] = useState(false);
+    const [theme , setTheme] = useState(false);
     const amountRef = useRef();
     const descriptionRef = useRef();
     const expenseRef = useRef();
@@ -56,11 +58,22 @@ const Expense = props =>
         },[loggedEmail]);
 
         function premiumFeatures(){
-            const wholeBody  = document.getElementsByTagName('body')
-            console.log(wholeBody)
-            wholeBody[0].style.backgroundColor = 'black';
+            setShowPremium(true)
+
       
           }
+          function toggleTheme(){
+            const wholeBody  = document.getElementsByTagName('body')
+            if(theme){
+                wholeBody[0].style.backgroundColor = 'white'
+                setTheme(previousState=>!previousState)
+            }else{
+                wholeBody[0].style.backgroundColor = 'darkslategrey'
+                setTheme(previousState=>!previousState)
+    
+            }
+        
+        }
         
     
         const submitHandler = item =>
@@ -69,7 +82,7 @@ const Expense = props =>
             const enteredAmount = amountRef.current.value;
             const enteredDescription = descriptionRef.current.value;
             const enteredExpense = expenseRef.current.value;
-            if((enteredAmount)+totalExpense <1000)
+            if((enteredAmount)+totalExpense <=5000)
             {
                 setArrayDetails([...arrayDetails ,{amount:enteredAmount , description: enteredDescription, expenses: enteredExpense}]);
                 console.log(arrayDetails)
@@ -193,10 +206,16 @@ const Expense = props =>
                         <option className="form-option" value="Other">Other</option>
                     </select>
                 </span><br></br>
+                <section>
+                    <div class="scrolling">
+                        <p>Manage Expenses Upto Rs 5k For Free</p>
+                    </div>
+                </section>
                 <span>
                     <button className="submit-expense" type="submit">Submit Expense</button>
                     <button className="submit-expense" onClick={crtctx.removeToken}>Logout</button>
                     {showPremium &&<button className="submit-expense" type="submit" onClick={premiumFeatures}>Buy Premium</button>}
+                    {showPremium &&<button className="submit-expense" type="submit" onClick={toggleTheme}>Toggle Theme</button>}
                     {showPremium &&<button className="submit-expense" type="submit" onClick={premiumFeatures}><CSVLink {...csvReport}>Download_Expense</CSVLink></button>}
                 </span><br></br>
             </form>
