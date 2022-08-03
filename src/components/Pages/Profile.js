@@ -98,7 +98,7 @@ const Profile = (props) => {
       <div className="form-main">
       
         <h2>Contact Details</h2>
-        <img className="profile_image" src={`${imageUrlRef.current.value}`} alt=""></img>
+        {/* <img className="profile_image" src={imageUrlRef.current.value} alt=""></img> */}
         <form onSubmit={submitHandler}>
           <span className="form-div">
             <label className="form-lable" htmlFor="name">
