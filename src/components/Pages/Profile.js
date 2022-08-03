@@ -87,8 +87,7 @@ const Profile = (props) => {
           Winner Never Quits, Quitter Never Wins
         </span>
         <span className="title-span2">
-          Your Profile is 35% Completed.A complete Profile has <br></br>
-          higher chance of landing JOBS.
+          Your Profile is 35% Completed. <br></br>
           <Link className="complete-button" to="/profile">
             Complete Now
           </Link>
